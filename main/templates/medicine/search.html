@@ -1,0 +1,21 @@
+{% extends 'layout/app-layout.html' %}
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Search Results</h1>
+
+        {% if med %}
+            <ul class="list-group">
+                {% for medicine in med %}
+                    <li class="list-group-item">
+                        <h5 class="mb-1">{{ medicine.name }}</h5>
+                        <p class="mb-1">{{ medicine.description }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                No results found.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'layout/app-layout.html' %}
+{% block content %}
+<div class="d-flex justify-content-center mt-3">
+    <div class="col-md-6">
+        <form class="input-group mb-3" id="searchForm" method="get" action="{% url 'searchmed' %}">
+            <div class="input-group-prepend">
+                <button type="submit" class="input-group-text material-symbols-outlined" 
+                 style="border-radius: 20px 0 0 20px;border-width: 1px; border-color: black;">
+                    search
+                </button>
+            </div>
+            <input type="text" name="query" class="form-control" id="searchInput" placeholder="Search" 
+            style="border-radius: 0 20px 20px 0;border-width: 1px; border-color: black;">
+        </form>
+    </div>
+</div><br>
+
+<div class="table-responsive container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Medicine_id</th>
+          <th>Medicine_name</th>
+          <th>Medicine_price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in med_list %}
+          <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+              <a href="{% url 'updatemed' product.id %}" class="btn btn-warning">Edit</a>
+              <a href="{% url 'deletemed' product.id %}" class="btn btn-danger">Delete</a>
+             </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
